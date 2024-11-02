@@ -24,6 +24,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "joao.v.mpessoal@gmail.com"
+          git config --global user.name "joaovrmoraes"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Deploy to GitHub Pages
         run: npm run gh:deploy
         env:
